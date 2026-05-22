@@ -795,16 +795,24 @@
             color: var(--white);
         }
         .work-card-badge.ooh {
-            background: var(--black);
-            color: var(--citric);
+            background: var(--citric);
+            color: var(--black);
         }
         .work-card-badge.print {
             background: var(--aqua);
             color: var(--black);
         }
         .work-card-badge.integrated {
-            background: var(--citric);
-            color: var(--black);
+            background: #FF8C42;
+            color: var(--white);
+        }
+        .work-card-badge.brand-identity {
+            background: #8B5CF6;
+            color: var(--white);
+        }
+        .work-card-badge.non-traditional {
+            background: #06B6D4;
+            color: var(--white);
         }
         .work-card-badges {
             display: flex;
@@ -821,7 +829,7 @@
         .work-filter-btn {
             padding: 6px 16px;
             border-radius: 99px;
-            border: 1px solid rgba(0,0,0,.2);
+            border: 1px solid transparent;
             background: transparent;
             font-family: var(--f-body);
             font-size: .75rem;
@@ -832,12 +840,64 @@
             transition: background .2s, color .2s, border-color .2s;
         }
         .work-filter-btn:hover {
-            border-color: var(--black);
+            opacity: .85;
         }
-        .work-filter-btn.active {
+        .work-filter-btn.filter-all {
             background: var(--black);
             color: var(--white);
             border-color: var(--black);
+            opacity: .35;
+        }
+        .work-filter-btn.filter-activation {
+            background: var(--tang);
+            color: var(--white);
+            border-color: var(--tang);
+            opacity: .35;
+        }
+        .work-filter-btn.filter-social {
+            background: var(--fushia);
+            color: var(--white);
+            border-color: var(--fushia);
+            opacity: .35;
+        }
+        .work-filter-btn.filter-film {
+            background: var(--blue);
+            color: var(--white);
+            border-color: var(--blue);
+            opacity: .35;
+        }
+        .work-filter-btn.filter-ooh {
+            background: var(--citric);
+            color: var(--black);
+            border-color: var(--citric);
+            opacity: .35;
+        }
+        .work-filter-btn.filter-print {
+            background: var(--aqua);
+            color: var(--black);
+            border-color: var(--aqua);
+            opacity: .35;
+        }
+        .work-filter-btn.filter-integrated {
+            background: #FF8C42;
+            color: var(--white);
+            border-color: #FF8C42;
+            opacity: .35;
+        }
+        .work-filter-btn.filter-brand-identity {
+            background: #8B5CF6;
+            color: var(--white);
+            border-color: #8B5CF6;
+            opacity: .35;
+        }
+        .work-filter-btn.filter-non-traditional {
+            background: #06B6D4;
+            color: var(--white);
+            border-color: #06B6D4;
+            opacity: .35;
+        }
+        .work-filter-btn.active {
+            opacity: 1;
         }
 
         /* ========== MIXED TITLE ========== */
@@ -932,6 +992,14 @@
             line-height: 1.6;
             letter-spacing: -.01em;
             margin-bottom: 1.2rem;
+        }
+        .about-content a {
+            color: var(--citric);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .about-content a:hover {
+            color: var(--aqua);
         }
 
         .about-tama {
@@ -1459,7 +1527,7 @@
 
         .contact-footer {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
             margin-bottom: 3rem;
         }
@@ -3005,7 +3073,7 @@
                             </div>
                             <div className="work-card-badges">
                                 {project.category.map((cat, i) => (
-                                    <span key={i} className={`work-card-badge ${cat.toLowerCase()}`}>{cat}</span>
+                                    <span key={i} className={`work-card-badge ${cat.toLowerCase().replace(/\s+/g, '-')}`}>{cat}</span>
                                 ))}
                             </div>
                         </div>
@@ -3405,7 +3473,7 @@
         function WorkSection() {
             const [selectedProject, setSelectedProject] = useState(null);
             const [activeFilter, setActiveFilter] = useState('ALL');
-            const categories = ['ALL', 'ACTIVATION', 'SOCIAL', 'FILM', 'OOH', 'PRINT', 'INTEGRATED'];
+            const categories = ['ALL', 'ACTIVATION', 'SOCIAL', 'FILM', 'OOH', 'PRINT', 'INTEGRATED', 'BRAND IDENTITY', 'NON-TRADITIONAL'];
 
             const projects = [
                 {
@@ -3439,7 +3507,7 @@
                     idea: "A brand platform that reframes downsizing as a positive lifestyle choice. Rather than focusing on what you give up, 'Way to Live' celebrates what you gain — community, freedom, and a home designed around how you actually want to live.",
                     thumb: "Thumbnails/Way to live.png",
                     videos: ['https://vimeo.com/1118611764', 'https://vimeo.com/1117969772'],
-                    category: ["FILM"]
+                    category: ["FILM", "INTEGRATED"]
                 },
                 {
                     id: 3,
@@ -3466,7 +3534,7 @@
                         {id: 'DRNsrN_kgIL', type: 'p'},
                         {id: 'DPA2BOfj72L', type: 'reel'}
                     ],
-                    category: ["ACTIVATION", "INTEGRATED"]
+                    category: ["ACTIVATION", "BRAND IDENTITY", "INTEGRATED"]
                 },
                 {
                     id: 4,
@@ -3532,9 +3600,9 @@
                             'UGC/Gemini 3 (Nano Banana Pro)_0007.png','UGC/Gemini 3 (Nano Banana Pro)_0008.png'
                         ]}
                     ],
-                    category: ["SOCIAL", "PRINT"]
+                    category: ["SOCIAL", "PRINT", "NON-TRADITIONAL"]
                 }
-            
+
             ];
 
             return (
@@ -3543,7 +3611,7 @@
                         <div className="container">
                             <div className="work-filters">
                                 {categories.map(cat => (
-                                    <button key={cat} className={`work-filter-btn ${activeFilter === cat ? 'active' : ''}`} onClick={() => setActiveFilter(cat)}>
+                                    <button key={cat} className={`work-filter-btn filter-${cat.toLowerCase().replace(/\s+/g, '-')} ${activeFilter === cat ? 'active' : ''}`} onClick={() => setActiveFilter(cat)}>
                                         {cat}
                                     </button>
                                 ))}
@@ -3622,9 +3690,8 @@
                                     <MixedTitle text="The" hoverable={true} /> <MixedTitle text="Copywriter" hoverable={true} /><br /><MixedTitle text="Liam" hoverable={true} />
                                 </h2>
                                 <p>Liam is an award-winning creative with over six years' experience building brands of all shapes and sizes.</p>
-      <p style={{marginTop: '16px'}}>In his first year, he picked up a <strong>D&AD New Blood Pencil</strong> calling out fashion houses ripping off Indigenous designs.</p>
-      <p style={{marginTop: '16px'}}>He's since helped build a Kill Bill–style biker gang of AAMI girls, cast Paddy Dangerfield as a castaway, brewed the world's first self-tanning beer, and introduced a slice of Aussie pub culture to New York with Old Mates New York.</p>
-      <p style={{marginTop: '16px'}}>He's worked at places like <strong>Ogilvy</strong>, <strong>Dentsu Creative</strong>, and most recently <strong>By All Means</strong>. Outside work, he mentors at <strong>RMIT University</strong> and was selected for the <strong>Cannes Lions Creative Academy</strong>.</p>
+      <p style={{marginTop: '16px'}}>In his first year, he picked up a <strong>D&AD New Blood Pencil</strong> calling out fashion houses ripping off Indigenous designs. Since then he's gone on to be <a href="https://www.liaawards.com/press/press_releases/2022/press_article.cfm?press_id=1295&start=1" target="_blank" rel="noopener noreferrer">mentored by Ad Age's Creative Director of the Year</a>, help <a href="https://www.liamratliff.com/work/aami-bargain-regret" target="_blank" rel="noopener noreferrer">build a Kill Bill–style biker gang of AAMI girls</a>, <a href="https://www.liamratliff.com/work/aami-bargain-regret" target="_blank" rel="noopener noreferrer">cast Paddy Dangerfield as a castaway</a>, <a href="https://www.liamratliff.com/work/unpale-ale" target="_blank" rel="noopener noreferrer">brew the world's first self-tanning beer</a>, and most recently, introduce <a href="https://www.liamratliff.com/work/old-mates" target="_blank" rel="noopener noreferrer">a little slice of Aussie pub culture to New York</a>.</p>
+      <p style={{marginTop: '16px'}}>He's worked at places like <strong>Ogilvy</strong>, <strong>Dentsu Creative</strong>, and most recently <strong>By All Means</strong>. He was also one of 30 creatives selected for the <strong>Cannes Lions Creative Academy</strong> in France — the closest he's come to convincing his family this is, in fact, a real job.</p>
                             </div>
                         </div>
                     </div>
@@ -3713,7 +3780,11 @@
                                 <h2>
                                     <MixedTitle text="The" hoverable={true} /> <MixedTitle text="Art" hoverable={true} /> <MixedTitle text="Director" hoverable={true} /><br /><MixedTitle text="Ella" hoverable={true} />
                                 </h2>
-                                <p>I'm a London-based creative and art director with over 10 years of experience in advertising. I studied history, started out as a retoucher, and later represented Hong Kong at Young Lions as a photographer. I love exploring new AI tools and what they can bring to the creative process, but I still believe the best ideas come from working with people.</p>
+                                <p>Ella is a London-based art director with over ten years' experience in advertising.</p>
+      <p style={{marginTop: '16px'}}>Most recently she was at <strong>Draftline London</strong>, leading integrated creative for <a href="https://www.ellawong.work/#when-it-rains-we-pour" target="_blank" rel="noopener noreferrer">Stella Artois</a>, <a href="https://www.ellawong.work/#seasons-change-golden-hour-remains" target="_blank" rel="noopener noreferrer">Corona</a> across social, digital, film and print.</p>
+      <p style={{marginTop: '16px'}}>Before that she was at <strong>Ogilvy</strong>, <strong>TBWA</strong> and <strong>Grey</strong> in Hong Kong, making campaigns for <a href="https://www.ellawong.work/#old-town-central" target="_blank" rel="noopener noreferrer">Hong Kong Tourism Board</a>, <a href="https://www.ellawong.work/#absolut-bottleless" target="_blank" rel="noopener noreferrer">Absolut</a> and <a href="https://www.ellawong.work/#smoother-the-better" target="_blank" rel="noopener noreferrer">Carlsberg</a> and many more.</p>
+      <p style={{marginTop: '16px'}}>Her <a href="https://www.ellawong.work/#undercover" target="_blank" rel="noopener noreferrer">Undercover</a> campaign picked up two <strong>Cannes Lions</strong> and a <strong>D&AD Pencil</strong>, with other recognitions at <strong>LIA</strong>, <strong>NYF</strong>, <strong>ADFEST</strong> and <strong>Spikes Asia</strong>.</p>
+      <p style={{marginTop: '16px'}}>She started her career as a retoucher and still shoots and directs her own content when the project calls for it.</p>
                             </div>
                         </div>
                     </div>
@@ -3859,6 +3930,30 @@
                                     <li>Old Mates New York</li>
                                     <li>Stella Artois</li>
                                     <li>Toyota</li>
+                                </ul>
+                            </div>
+                            <div className="contact-column">
+                                <h3>Awards</h3>
+                                <ul>
+                                    <li>Cannes Lions — 2× Bronze</li>
+                                    <li>D&AD — Graphite Pencil</li>
+                                    <li>D&AD — New Blood Pencil</li>
+                                    <li>LIA — Silver + 3× Bronze</li>
+                                    <li>ADC Awards — Silver</li>
+                                    <li>New York Festival — Silver + 2× Bronze</li>
+                                    <li>Australian Effie Awards — Bronze</li>
+                                    <li>Kam Fan — Grand Kam Fan + 3× Gold + 2× Silver</li>
+                                    <li>Qantas Australian Tourism Awards — Silver</li>
+                                    <li>Victorian Tourism Awards — Gold</li>
+                                    <li>Mumbrella Awards — Winner</li>
+                                    <li>Drum Awards — Silver</li>
+                                    <li>AWARD Lab GenAI — Winner</li>
+                                    <li>Cairns Crocodiles Hatchlings — Finalist</li>
+                                    <li>MAD Stars — Finalist</li>
+                                    <li>Cannes Lions Creative Academy</li>
+                                    <li>LIA Creative Liaisons</li>
+                                    <li>Young Lions — HK Representative</li>
+                                    <li>Young Kam Fan — Gold</li>
                                 </ul>
                             </div>
                         </div>
