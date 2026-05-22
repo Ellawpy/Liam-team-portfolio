@@ -814,6 +814,10 @@
             background: #06B6D4;
             color: var(--white);
         }
+        .work-card-badge.earned {
+            background: #10B981;
+            color: var(--white);
+        }
         .work-card-badges {
             display: flex;
             gap: 4px;
@@ -894,6 +898,12 @@
             background: #06B6D4;
             color: var(--white);
             border-color: #06B6D4;
+            opacity: .35;
+        }
+        .work-filter-btn.filter-earned {
+            background: #10B981;
+            color: var(--white);
+            border-color: #10B981;
             opacity: .35;
         }
         .work-filter-btn.active {
@@ -3473,7 +3483,7 @@
         function WorkSection() {
             const [selectedProject, setSelectedProject] = useState(null);
             const [activeFilter, setActiveFilter] = useState('ALL');
-            const categories = ['ALL', 'ACTIVATION', 'SOCIAL', 'FILM', 'OOH', 'PRINT', 'INTEGRATED', 'BRAND IDENTITY', 'NON-TRADITIONAL'];
+            const categories = ['ALL', 'ACTIVATION', 'SOCIAL', 'FILM', 'OOH', 'PRINT', 'INTEGRATED', 'BRAND IDENTITY', 'NON-TRADITIONAL', 'EARNED'];
 
             const projects = [
                 {
@@ -3496,7 +3506,7 @@
                         'CITY_OF_MELB_SELECTS-87-1620x1080.jpg'
                     ],
                     heroGif: true,
-                    category: ["OOH", "FILM"]
+                    category: ["INTEGRATED"]
                 },
                 {
                     id: 2,
@@ -3534,7 +3544,7 @@
                         {id: 'DRNsrN_kgIL', type: 'p'},
                         {id: 'DPA2BOfj72L', type: 'reel'}
                     ],
-                    category: ["ACTIVATION", "BRAND IDENTITY", "INTEGRATED"]
+                    category: ["BRAND IDENTITY", "EARNED"]
                 },
                 {
                     id: 4,
@@ -3600,7 +3610,7 @@
                             'UGC/Gemini 3 (Nano Banana Pro)_0007.png','UGC/Gemini 3 (Nano Banana Pro)_0008.png'
                         ]}
                     ],
-                    category: ["SOCIAL", "PRINT", "NON-TRADITIONAL"]
+                    category: ["SOCIAL", "NON-TRADITIONAL"]
                 }
 
             ];
