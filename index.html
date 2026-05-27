@@ -1790,6 +1790,9 @@
         .group-row-full {
             grid-template-columns: 1fr;
         }
+        .group-row-full.group-row-2col {
+            grid-template-columns: repeat(2, 1fr);
+        }
         .group-row-full img {
             object-fit: contain;
         }
@@ -3259,7 +3262,7 @@
                                 return (
                                     <div key={gi}>
                                         {group.title && <h3 style={{fontFamily:'var(--f-title)',fontSize:'clamp(1.2rem,2vw,1.6rem)',fontWeight:700,letterSpacing:'-.02em',margin:'2rem 0 1rem',opacity:.7,...textStyle}}>{group.title}</h3>}
-                                        <div className={`group-row${group.fullWidth ? ' group-row-full' : ''}`}>
+                                        <div className={`group-row${group.fullWidth ? ' group-row-full' : ''}${group.fullWidth && group.imgs.length > 1 ? ' group-row-2col' : ''}`}>
                                             {group.imgs.map((img, i) => {
                                                 const src = encodeURI(`${p.imgDir}/${img}`);
                                                 return <img key={i} src={src} alt={`${p.title} row ${gi} img ${i+1}`} loading="lazy" />;
